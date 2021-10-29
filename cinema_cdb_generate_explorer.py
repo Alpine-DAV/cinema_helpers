@@ -11,29 +11,25 @@ from os.path import join as pjoin
 
 from cinema_common import *
 
-
-# Given a cdb (directory), locate the data.csv file
-# Copy Cinema DB files into `_output/cinema_explorer/database.cdb`
-# Copy cinema explorer html and js to `_output/cinema_explorer`
-# Create custom `_output/cinema_explorer/index.html`
-
+# helper to created proper embedded js
+# for static site
 def cinema_db_gen_meta_js(db_name, db_path):
     res = {"directory": os.path.basename(db_path),
            "name" : db_name }
-    res["csvs"] = cinema_db_digest_csvs(db_path)
-    return res
-
-def cinema_db_digest_csvs(db_path):
-    res = {}
+    res["csvs"] = {}
     csvs = glob.glob(pjoin(db_path,"*.csv"))
     # we pull in csv data for js to parse
     for csv in csvs:
         csv_base = os.path.split(csv)[1]
         csv_base = os.path.splitext(csv_base)[0]
         print("[reading {0}]".format(csv))
-        res[csv_base] = open(csv).read()
+        res["csvs"][csv_base] = open(csv).read()
     return res
 
+# Given a cdb (directory), locate the data.csv file
+# Copy Cinema DB files into `_output/cinema_explorer/database.cdb`
+# Copy cinema explorer html and js to `_output/cinema_explorer`
+# Create custom `_output/cinema_explorer/index.html`
 def cinema_db_create_explorer(db_path,dest_root):
     db_name =  cinema_db_name(db_path)
     dest_dir =  pjoin(dest_root,"cinema_explorer")
@@ -58,7 +54,7 @@ def cinema_db_create_explorer(db_path,dest_root):
 
 def main():
     if len(sys.argv) < 1:
-        print("usage: python cinema_cdb_generate_explorer.py input.cdb <output_dir> <open>")
+        print("usage: python cinema_cdb_generate_explorer.py input.cdb <output_dir>")
         print("       (default output_dir = _output)")
         sys.exit(-1)
     db_path = sys.argv[1]
@@ -86,7 +82,6 @@ def main():
         sys.exit(-1)
 
     cinema_db_create_explorer(db_path,dest_dir);
-
 
 
 if __name__ == "__main__":

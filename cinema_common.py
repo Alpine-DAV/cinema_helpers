@@ -4,14 +4,23 @@
 
 import glob
 import os
+import sys
 import shutil
 from os.path import join as pjoin
 
 
-# given a database path, detect the type of db
+# given a database path, return the db name
 def cinema_db_name(path):
     # given cdb dir get name
-    return os.path.split(path)[1]
+    if path.endswith(os.sep):
+        path = path[:path.rfind(os.sep)]
+    res = os.path.split(path)[1]
+    if res == "":
+        print("")
+        print("ERROR: database name is empty for db {0}".format(path))
+        print("")
+        sys.exit(-1)
+    return  res
 
 # given a database path, detect the type of db
 def cinema_db_type(path):
@@ -25,10 +34,14 @@ def cinema_db_type(path):
     return res
 
 # helper to make a copy of a cinema db
-# example: cinema_db_copy("my_stuff.cdb","my_copy.cdb")
+# example: cinema_db_copy("my_stuff.cdb","my_stuff_copy.cdb")
 def cinema_db_copy(src_db,dest_db):
+    db_type = cinema_db_type(src_db)
     if cinema_db_type(src_db) == "unknown":
-        print("ERROR: can't copy db with unknown spec")
+        print("")
+        print("ERROR: {0} database type: {1}".format(src_db,db_type))
+        print("ERROR: we won't copy db with unknown spec")
+        print("")
         sys.exit(-1)
     print("[copying {0} to {1}]".format(os.path.abspath(src_db),
                                         os.path.abspath(dest_db)))
