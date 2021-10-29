@@ -1,4 +1,5 @@
 # cinema_helpers
+
 Helper scripts for connecting cinema databases to viewers.
 
 A cinema database provides a parameterized set of assets (files) and associated meta data.
@@ -10,16 +11,18 @@ Learn more about Cinema here:
 https://cinemasciencewebsite.readthedocs.io/en/latest/index.html
 
 
-These helper scripts target Spec D (general CSV) and Cinema Spec A (legacy image) specifications.
+These helper scripts target cinema spec d (general csv) and cinema spec a (legacy image) specifications.
 
 The viewers here are derived from the main cinema viewers, modified to avoid any XHR security issues.
 
 The scripts are derived from work done with Ascent.
 
 
+## Usage Examples
+
 ### cinema_cdb_generate_explorer.py
 
-Given a cinema database, create a stand alone Cinema Explorer to view these files.
+Given a cinema database, create a stand alone cinema explorer viewer for this database.
 
 ```
 python cinema_cdb_generate_explorer.py  example_databases/uncertainty_bubbles.cdb _out_explore_bubbles
@@ -36,7 +39,7 @@ open _out_spec_a_visit/cinema_spec_a_viewer/index.html
 ````
 
 ### cinema_cdb_spec_a_to_spec_d.py
-Given a SpecA database, convert to a Spec D CSV style database.
+Given a spec a database, convert to a spec d (csv-style) database.
 
 ```
 python cinema_cdb_convert_spec_a_to_spec_d.py   example_databases/visit_ex_spec_a.cdb/ _convert/visit_ex.cdb
