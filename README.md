@@ -29,7 +29,7 @@ python cinema_cdb_generate_explorer.py  example_databases/uncertainty_bubbles.cd
 open _out_explore_bubbles/cinema_explorer/index.html
 ````
 
-###  cinema_cdb_generate_viewer.py
+###  cinema_cdb_generate_spec_a_viewer.py
 
 Given a spec a cinema database, create a stand alone spec a viewer for this database.
 
@@ -38,7 +38,7 @@ python cinema_cdb_generate_spec_a_viewer.py example_databases/visit_ex_spec_a.cd
 open _out_spec_a_visit/cinema_spec_a_viewer/index.html 
 ````
 
-### cinema_cdb_spec_a_to_spec_d.py
+### cinema_cdb_convert_spec_a_to_spec_d.py
 Given a spec a database, convert to a spec d (csv-style) database.
 
 ```
