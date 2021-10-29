@@ -19,7 +19,7 @@ from cinema_common import *
 def cinema_db_create_spec_a_viewer(db_path,dest_root):
     db_name =  cinema_db_name(db_path)
     dest_dir =  pjoin(dest_root,"cinema_spec_a_viewer")
-    print("[{0}: {1}]").format(db_name,os.path.abspath(db_path))
+    print("[{0}: {1}]".format(db_name,os.path.abspath(db_path)))
     print("[copying {0} to {1}]".format(db_path, dest_dir))
     # copy cinema resources to output
     shutil.copytree(pjoin("viewers","cinema_spec_a"),dest_dir)
