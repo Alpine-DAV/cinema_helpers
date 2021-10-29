@@ -27,12 +27,6 @@ The scripts are derived from work done with Ascent.
 * Given a  cinema database, create a stand alone Spec A viewer for this database.
 
 
-** Given a cdb (directory) finds Spec A info.json
-** Copy Cinema DB files into `_output/cinema_spec_a_viewer_database.cdb`
-** Copies spec a viewer html and js to `_output/cinema_spec_a_viewer_resources`
-** Creates custom `_output/cinema_spec_a_viewer.html`
-
-
 ### cinema_cdb_spec_a_to_spec_d.py
 * Given a SpecA database, convert to a Spec D CSV style database.
 
