@@ -1,0 +1,22 @@
+name: Main
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Run Examples
+      run: |
+        python cinema_cdb_generate_explorer.py  example_databases/uncertainty_bubbles.cdb _out_explore_bubbles
+        python cinema_cdb_generate_spec_a_viewer.py example_databases/visit_ex_spec_a.cdb/ _out_spec_a_visit 
+        python cinema_cdb_convert_spec_a_to_spec_d.py  example_databases/visit_ex_spec_a.cdb/ _convert/visit_ex.cdb
+        python cinema_cdb_generate_explorer.py  _convert/visit_ex.cdb _out_explore_converted
