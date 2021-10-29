@@ -20,7 +20,6 @@ def gen_path(pattern, keys, values):
     res = pattern
     for i,k in enumerate(keys):
         tag = "{" + k + "}"
-        print(tag)
         res = res.replace(tag,str(values[i]))
     return res
 
@@ -36,7 +35,6 @@ def cinema_db_convert_spec_a_to_spec_d(src_db_path,dest_db_path):
     vals = []
     for a in args:
         vals.append(src_db_info["arguments"][a]["values"])
-    print(pat)
     mkdirp(dest_db_path)
     csv_path = pjoin(dest_db_path,"data.csv")
     csv_out = csv.writer(open(csv_path,"w"), quoting=csv.QUOTE_ALL)
